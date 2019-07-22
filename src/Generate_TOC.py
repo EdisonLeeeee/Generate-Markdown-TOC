@@ -10,6 +10,9 @@ def parse_input_file(input_filename):
     triple_quote = 0
     with open(input_filename, 'r', encoding='utf-8') as f:
         for line in f:
+            # if [toc] command exits, ignore it
+            if line == '[toc]\n':
+                continue
             if line.startswith('#'):
                 pos = 0
                 # pos is the position of first letter that isn't '#' in line
