@@ -45,7 +45,7 @@ def parse_input_file(input_filename):
                 output_file.append(line_above)
                 output_file.append(line)
                 if pos == 1:
-                    output_file.append('[Back to Top](#table-of-contents)\n')
+                    output_file.append('[Back to Top](#table-of-contents)\n\n')
             else:
                 output_file.append(line)
                 if line.startswith('```'):
