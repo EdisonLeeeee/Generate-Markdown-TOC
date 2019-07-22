@@ -6,20 +6,18 @@ def parse_input_file(input_filename):
     table_of_contents = ['<a class="toc" id="table-of-contents"></a>\n# Table of Contents\n']
     primary_title_count = 0
     output_file = []
-    # to judge whether in the ``` ```
-    triple_quote = 0
+    # to judge whether within the triple_quotes ``` ```
+    triple_quote = False
     with open(input_filename, 'r', encoding='utf-8') as f:
         for line in f:
             # if [toc] command exits, ignore it
             if line == '[toc]\n':
                 continue
             if line.startswith('#'):
-                pos = 0
                 # pos is the position of first letter that isn't '#' in line
-                while pos < len(line) and line[pos] == '#':
-                    pos += 1
+                pos = line[:7].rfind('#') + 1
                 if triple_quote or pos > 6:
-                    # for some statements that startwith '#' but not title
+                    # for some statements that startwith '#' but not head line
                     # or '#' more than six
                     output_file.append(line)
                     continue
@@ -30,7 +28,7 @@ def parse_input_file(input_filename):
                     index = str(primary_title_count)
                     title_dict[1] = primary_title_count
                 else:
-                    # secondary title, level 3 title and so on
+                    # dict of secondary title, level 3 title and so on
                     title_dict[pos] += 1
                     index = str(primary_title_count)
                     for i in range(2, pos+1):

@@ -13,21 +13,24 @@
 <a class="toc" id ="1"></a>
 # Generate Markdown TOC
 [Back to Top](#table-of-contents)
+
 Since GitHub cannot automatically generate TOC using the TOC command, Inspired by [Markdown toclify](https://github.com/rasbt/markdown-toclify), I write a script that could help you generate TOC in your file.
-This 
 
 <a class="toc" id ="2"></a>
 # Requires
 [Back to Top](#table-of-contents)
+
 + Python 3.x (Since I used f-strings)
 + argparse
 
 <a class="toc" id ="3"></a>
 # Usage
 [Back to Top](#table-of-contents)
+
 <a class="toc" id ="4"></a>
 # Generate_TOC
 [Back to Top](#table-of-contents)
+
 ```bash
 $  python .\src\Generate_TOC.py -h
 usage: Generate_TOC.py [-h] input_filename [output_filename]
@@ -69,6 +72,7 @@ You can specify the file name you want to recover, and remove the TOC from it to
 <a class="toc" id ="5"></a>
 # Example
 [Back to Top](#table-of-contents)
+
 <a class="toc" id ="5-1"></a>
 ## Input File
 ```bash
