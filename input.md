@@ -1,23 +1,19 @@
-# First
-This is the first paragraph. 1st
-line 1
-line 2
-## First-1
-This is the first sub paragraph of the first paragraph
-## First-2
-This is the second sub paragraph of the first paragraph
-# Second
-This is the Second paragraph. 2nd
-## Second-1
-# Third
-This is the Third paragraph. 3rd
-```
-# dsad
-```
+# Headline Level 1
++ There is no royal road to learning.
++ A man's best friends are his ten fingers.
++ Life would be too smooth if it had no rubs in it.
 
-`#das`
+## Headline Level 2
++ Life would be too smooth if it had no rubs in it.
+### Headline Level 3
+```
+# This is to test whether the program treats it as a title
+```
+---
+Even with Chinese headings
 # 标题是中文
 ## 依然不影响
 ### 生成TOC
-#### 甚至是四级标题
+#### 四级标题
 ##### 五级标题
+###### 六级标题
