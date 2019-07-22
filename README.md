@@ -76,7 +76,7 @@ $  python .\src\Generate_TOC.py .\input.md .\output.md
 ### Generating markdown toc from ..\input.md, and wtite back to ..\output.md...
 ### Already generating markdown toc
 ```
-![example_1](https://github.com/EdisonLeeeee/Generate-Markdown-TOC/tree/master/images/example_1.png)
+![example_1](images/example_1.png?raw=true)
 <a class="toc" id ="5-2"></a>
 ## Output File
 ```bash
@@ -85,4 +85,4 @@ $  python .\src\Recover.py .\output.md
 yes
 ### Recovery done
 ```
-![example_2](https://github.com/EdisonLeeeee/Generate-Markdown-TOC/tree/master/images/example_2.png)
+![example_2](images/example_2.png?raw=true)
