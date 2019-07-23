@@ -95,7 +95,7 @@ $  python .\src\Generate_TOC.py .\input.md .\output.md
 ```
 ![example_2](images/example_2.png)
 <a class="toc" id ="5"></a>
-# Generate TOC at anywhere (Customized)
+# Generate TOC anywhere (Customized)
 [Back to TOC](#table-of-contents)
 
 You can add a line `~~placeholder~~` at your markdown file, at which the TOC will generate.
