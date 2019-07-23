@@ -2,7 +2,7 @@ import argparse
 from collections import defaultdict
 
 
-def parse_input_file(input_filename):
+def parse_input_file(input_filename, back_to_toc='Back to TOC'):
     table_of_contents = ['<a class="toc" id="table-of-contents"></a>\n# Table of Contents\n']
     primary_title_count = 0
     output_file = []
@@ -43,7 +43,7 @@ def parse_input_file(input_filename):
                 output_file.append(line_above)
                 output_file.append(line)
                 if pos == 1:
-                    output_file.append('[Back to TOC](#table-of-contents)\n\n')
+                    output_file.append(f'[{back_to_toc}](#table-of-contents)\n\n')
             else:
                 output_file.append(line)
                 if line.startswith('```'):

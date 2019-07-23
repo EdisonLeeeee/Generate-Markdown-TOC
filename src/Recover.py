@@ -1,26 +1,24 @@
 import argparse
 
 
-def recovery_file(recovery_filename):
+def recovery_file(recovery_filename, back_to_toc='Back to'):
     head_lines = 2
     # head_lines = 3 since add 2 blank lines when generated TOC
     output_file = []
     last_line = ''
     with open(recovery_filename, 'r', encoding='utf-8') as f:
         for line in f:
-            if not line.startswith(('<a class="toc"', '[Back to TOC]')):
+            if not line.startswith(('<a class="toc"', f'[{back_to_toc}]')):
                 # Because I add 1 blank line above when generated [Back to TOC]
-                if not last_line.startswith('[Back to TOC]'):
+                if not last_line.startswith(f'[{back_to_toc}]') or not line.strip():
                     output_file.append(line)
             elif line.startswith('<a class="toc"'):
                 head_lines += 1
             last_line = line
     toc_pos = output_file.index('# Table of Contents\n')
     with open(recovery_filename, 'w', encoding='utf-8') as f:
-        for line in output_file[:toc_pos]:
-            f.write(line)
-        for line in output_file[toc_pos+head_lines:]:
-            f.write(line)
+        f.writelines(output_file[:toc_pos])
+        f.writelines(output_file[toc_pos+head_lines:])
 
 
 def parse_args():
