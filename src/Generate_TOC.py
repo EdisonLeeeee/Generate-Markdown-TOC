@@ -43,7 +43,7 @@ def parse_input_file(input_filename):
                 output_file.append(line_above)
                 output_file.append(line)
                 if pos == 1:
-                    output_file.append('[Back to Top](#table-of-contents)\n\n')
+                    output_file.append('[Back to TOC](#table-of-contents)\n\n')
             else:
                 output_file.append(line)
                 if line.startswith('```'):
@@ -51,24 +51,26 @@ def parse_input_file(input_filename):
     return table_of_contents, output_file
 
 
-def write_back(output_filename, table_of_contents, output_file):
+def write_back(output_filename, table_of_contents, output_file, placeholder):
+    # for pretty, add two lines
+    table_of_contents.append('\n' * 2)
+    placeholder += '\n'
+    toc_pos = output_file.index(placeholder) if placeholder in output_file else 0
     with open(output_filename, 'w', encoding='utf-8') as f:
-        for line in table_of_contents:
-            f.write(line)
-        # for pretty, add two lines
-        f.write('\n\n')
-        for line in output_file:
-            f.write(line)
+        f.writelines(output_file[:toc_pos])
+        f.writelines(table_of_contents)
+        f.writelines(output_file[toc_pos+1:])
 
 
 def parse_args():
     parser = argparse.ArgumentParser(description='Generate TOC for your Markdown file.')
     parser.add_argument('input_filename', metavar='input_filename', type=str,
-                        help='The file that need to generate TOC.')
+                        help='The file that need to generate TOC. You must spacify the input filename.')
     parser.add_argument('output_filename', metavar='output_filename', type=str, nargs='?',
                         help='The newly generated file with TOC from the original file.\
-                        If the parameter is omitted, The original file will be overwritten with the newly generated file.\
-                            i.e., default: output_filename = input_filename.')
+                        If the parameter is omitted, The original file will be overwritten with the newly generated file. NOTE: output_filename=input_filename in default.')
+    parser.add_argument('placeholder', metavar='placeholder', type=str, nargs='?',
+                        default='~~placeholder~~', help='Specify the placeholder, and it will generate TOC at the position of placeholder, otherwise the TOC will generate at the top. NOTE: placeholder="~~placeholder~~" in default.')
     return parser.parse_args()
 
 
@@ -76,6 +78,7 @@ if __name__ == '__main__':
     args = parse_args()
     input_filename = args.input_filename
     output_filename = args.output_filename
+    placeholder = args.placeholder
     if not output_filename:
         confirm = input('You did not enter output_filename. Would you like to replace your original file with newly generated file? [Yes/No]\n')
         if confirm.strip().lower() != 'yes':
@@ -86,5 +89,5 @@ if __name__ == '__main__':
     print(f'### Generating markdown toc from {input_filename}, and wtite back to {output_filename}...')
 
     table_of_contents, output_file = parse_input_file(input_filename)
-    write_back(output_filename, table_of_contents, output_file)
+    write_back(output_filename, table_of_contents, output_file, placeholder)
     print('### Already generating markdown toc')

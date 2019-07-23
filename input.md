@@ -7,6 +7,7 @@
 # To test whether the program treats it as head line.
 ```
 ---
+~~placeholder~~
 # 标题是中英文和 Emoji 😎
 ## 依然不影响生成 TOC 😋
 ### 三级标题
