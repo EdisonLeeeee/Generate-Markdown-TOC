@@ -8,17 +8,18 @@ def recovery_file(recovery_filename, back_to_toc='Back to'):
     last_line = ''
     with open(recovery_filename, 'r', encoding='utf-8') as f:
         for line in f:
-            if not line.startswith(('<a class="toc"', f'[{back_to_toc}]')):
+            if not line.startswith(('<a class="toc"', f'[{back_to_toc}')):
                 # Because I add 1 blank line above when generated [Back to TOC]
-                if not last_line.startswith(f'[{back_to_toc}]') or not line.strip():
+                if not last_line.startswith(f'[{back_to_toc}') or line.strip():
                     output_file.append(line)
             elif line.startswith('<a class="toc"'):
                 head_lines += 1
             last_line = line
     toc_pos = output_file.index('# Table of Contents\n')
     with open(recovery_filename, 'w', encoding='utf-8') as f:
-        f.writelines(output_file[:toc_pos])
-        f.writelines(output_file[toc_pos+head_lines:])
+        if toc_pos:
+            f.writelines(output_file[:toc_pos])
+        f.writelines(output_file[toc_pos+head_lines+1:])
 
 
 def parse_args():
